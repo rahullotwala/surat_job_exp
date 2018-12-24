@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/StudentScreenBackgroundColor">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/StudentScreenFontColor"
+            android:text="Company name"
+            android:textSize="@dimen/font22"
+            android:textStyle="bold"
+            android:id="@+id/textview_studentCompanySelectionResultCardview_companyName"
+            />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_studentCompanySelectionResultCardview_companyName"
+            app:srcCompat="@drawable/ic_round" />
+
+        <TextView
+            android:id="@+id/textview_studentCompanySelectionResultCardview_RoundName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/StudentScreenFontColor"
+            android:text="Name"
+            android:textSize="@dimen/font18"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textview_studentCompanySelectionResultCardview_companyName" />
+
+        <TextView
+            android:id="@+id/textview_studentCompanySelectionResultCardview_roundDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/StudentScreenFontColor"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="22nd October 2018"
+
+            android:textSize="@dimen/font18"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton_studentCompanySelectionCardview_AddCompany"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textview_studentCompanySelectionResultCardview_companyName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textview_studentCompanySelectionResultCardview_Status"
+            android:layout_width="125dp"
+            android:layout_height="29dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+           android:background="@drawable/ic_pending"
+            android:text="Pending"
+            android:paddingRight="10dp"
+            android:textSize="@dimen/font18"
+            android:textColor="@color/StudentScreenFontColor"
+            android:textStyle="bold"
+            android:textAlignment="center"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintStart_toEndOf="@+id/textview_studentCompanySelectionResultCardview_companyName" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

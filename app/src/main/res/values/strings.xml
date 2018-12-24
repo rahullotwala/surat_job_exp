@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">surat-job-expo</string>
+    <string name="intro_1_card">You can build your resume through our resume builder Feature</string>
+    <string name="intro_2_card">Hey Students, Excited for placement in advance before your study complete? Here is the opportunity to be placed in company at placement drive.</string>
+    <string name="intro_3_card">Find your best place to work here!</string>
+    <string name="intro_4_card">Hi Surat IT companies, Recruit students from all colleges of South Gujarat. Placement Drive</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="forgotpassword">Forgot password</string>
+    <string name="register">Register</string>
+    <string name="logPr">Registration</string>
+
+    <string-array name="logintype">
+        <item>Select user to Login</item>
+        <item>Student</item>
+        <item>Company</item>
+        <item>College</item>
+    </string-array>
+
+    <string name="regPr">Registration</string>
+
+    <string-array name="regtype">
+        <item>Select user to Register</item>
+        <item>Student</item>
+        <item>Company</item>
+        <item>College</item>
+    </string-array>
+
+    <string name="spinner_promt">Select College</string>
+    <!--10.0.2.2-->
+    <string name="BASE_URL">http://192.168.0.3:80/campus_drive_apis/</string>
+    <string name="Image_uri">http://192.168.0.3:80/surat_job_apis/Uploaded_document/Picture/</string>
+    <string name="su_uri">http://192.168.0.3:80/surat_job_apis/</string>
+    <string name="termscondition">I accept the Term and Conditions</string>
+    <string name="google_text">Sign in with Google</string>
+
+    <string name="cmpDr">Campus Drive</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_student_home">Student Home</string>
+    <string name="clg_reg_str">College Registration</string>
+    <string name="cmp_reg">Company Registration</string>
+    <string name="stud_reg">Student registration</string>
+    <string name="title_activity_job_post_detail">Job Post</string>
+    <string name="title_activity_college__home">College Home</string>
+    <string name="title_activity_college__course__manage">Manage Course</string>
+    <string name="title_activity_college__edit__profile">Edit Profile</string>
+    <string name="title_activity_student_campus_participation">Student Participation</string>
+    <string name="title_activity_student_company_selection">Selected Company</string>
+    <string name="title_activity_student_selected_company_priority">Company Priority</string>
+    <string name="title_activity_student_company_selection_result">Result</string>
+    <string name="title_activity_college__course__manage__detail__tab_bar_">Manage Course Details</string>
+    <string name="title_activity_student_job_post_details">Job Post Details</string>
+    <string name="welcome_para">Here You can select upto three companies with multiple job profiles withtin the same company</string>
+    <string name="try_again">Try Again</string>
+</resources>

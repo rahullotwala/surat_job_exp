@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView_collegeHome_driveName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Campus Drive Name"
+                android:textColor="@color/StudentScreenFontColor"
+                android:textSize="@dimen/font20"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_collegeHome_jobPostname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Job post name"
+                android:textColor="@color/StudentScreenFontColor"
+                android:textSize="@dimen/font17"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total participated Colleges"
+                    android:textColor="@color/StudentScreenFontColor"
+                    android:textSize="@dimen/font13"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView_collegeHome_totalCollege"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="10"
+                    android:textColor="@color/StudentScreenFontColor"
+                    android:textSize="@dimen/font13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/denim70"
+                    android:layout_height="wrap_content"
+                    android:text="Total participated Companies"
+                    android:textColor="@color/StudentScreenFontColor"
+                    android:textSize="@dimen/font13"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView_collegeHome_totalCompanies"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="10"
+                    android:textColor="@color/StudentScreenFontColor"
+                    android:textSize="@dimen/font13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/denim70"
+                    android:layout_height="wrap_content"
+                    android:text="Total participated Students"
+                    android:textColor="@color/StudentScreenFontColor"
+                    android:textSize="@dimen/font13"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView_collegeHome_totalStudents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="10"
+                    android:textColor="@color/StudentScreenFontColor"
+                    android:textSize="@dimen/font13" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/steelblue"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <Button
+            android:id="@+id/button_collegeHome_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:text="Details"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.43" />
+
+
+        <Button
+            android:id="@+id/button_collegeHome_participation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:text="Participate now"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

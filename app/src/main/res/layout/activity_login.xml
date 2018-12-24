@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.example.archana.campusdrive.LoginActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="10dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frameLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/building_bcak"></FrameLayout>
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="100dp"
+                android:layout_height="84dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/frameLayout3"
+                app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
+                app:layout_constraintHorizontal_bias="0.039"
+                app:layout_constraintStart_toStartOf="@+id/frameLayout3"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+                app:layout_constraintVertical_bias="0.423"
+                app:srcCompat="@drawable/student_img" />
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="150dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+                app:layout_constraintVertical_bias="0.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/inputlayout_login_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColorHint="@color/colorPrimary">
+
+                        <EditText
+                            android:id="@+id/editText_login_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="Email" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/inputlayout_login_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColorHint="@color/colorPrimary">
+
+                        <EditText
+                            android:id="@+id/editText_login_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="20dp"
+                            android:hint="Password"
+                            android:inputType="textPassword" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <Spinner
+                        android:prompt="@string/logPr"
+                        style="@android:style/Widget.DropDownItem.Spinner"
+                        android:id="@+id/spinner_login_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:entries="@array/logintype"/>
+
+                    <TextView
+                        android:id="@+id/textView_login_forgotpassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:autoLink="web"
+                        android:gravity="center"
+                        android:padding="20px"
+                        android:text="@string/forgotpassword"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18dp" />
+
+
+                    <Button
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/login_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/buttonshape"
+                        android:gravity="center"
+                        android:text="Login"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="10px"
+                        android:text="Don't have an account"
+                        android:textColor="@color/colorPrimaryDark" />
+                    <Spinner
+                        style="@android:style/Widget.DropDownItem.Spinner"
+                        android:layout_marginTop="20dp"
+                        android:prompt="@string/regPr"
+                        android:spinnerMode="dialog"
+                        android:id="@+id/reg_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:entries="@array/regtype"></Spinner>
+                    <android.support.v7.widget.CardView
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="8dp"
+                        app:cardElevation="30dp"
+                        >
+                        <LinearLayout
+
+                            android:id="@+id/button_login_signInWithGoogle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/imageButton_login_signInWithGoogle"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:backgroundTint="@color/white"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_search" />
+
+                            <TextView
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/google_text"
+                                android:background="@color/StudentDrawerFontColor"/>
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+            </ScrollView>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

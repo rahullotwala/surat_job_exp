@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/transperent_card"
+            android:textSize="@dimen/font20"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Getting Started"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/welcome_para"
+            android:textColor="@color/steelblue"
+            android:textSize="@dimen/font15"
+            android:textStyle="bold" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/drive_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/circleImageView2"
+                app:layout_constraintEnd_toEndOf="@+id/circleImageView2"
+                app:layout_constraintStart_toStartOf="@+id/circleImageView2"
+                app:layout_constraintTop_toTopOf="@+id/circleImageView2" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_dark_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/circleImageView2"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="This Color indicate"
+                    android:textColor="@color/transperent_card"
+                    android:textSize="@dimen/font17" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Current campus drive"
+                    android:textColor="@color/transperent_card"
+                    android:textSize="@dimen/font17" />
+
+            </LinearLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView1"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/drive_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/circleImageView3"
+                app:layout_constraintEnd_toEndOf="@+id/circleImageView3"
+                app:layout_constraintStart_toStartOf="@+id/circleImageView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_light_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/circleImageView3"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="This Color indicate"
+                    android:textColor="@color/StudentDrawerFontColor"
+                    android:textSize="@dimen/font17" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="past campus drive"
+                    android:textColor="@color/StudentDrawerFontColor"
+                    android:textSize="@dimen/font17" />
+
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

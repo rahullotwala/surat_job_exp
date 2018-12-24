@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.example.archana.campusdrive.CollegeRegistrationActivity">
+    <android.support.v7.widget.CardView
+        android:id="@+id/linearLayout_collegeRegister"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="20dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frameLayout_collegeRegister"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/building_bcak">
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textView_collegeRegister_collegeid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/imageView_collegeRegister_circledImg"
+                android:layout_width="100dp"
+                android:layout_height="84dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/frameLayout_collegeRegister"
+                app:layout_constraintEnd_toEndOf="@+id/frameLayout_collegeRegister"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/frameLayout_collegeRegister"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout_collegeRegister"
+                app:layout_constraintVertical_bias="0.521"
+                app:srcCompat="@drawable/ic_college_heading" />
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="130dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout_collegeRegister"
+                app:layout_constraintVertical_bias="0.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:padding="30dp"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        >
+
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/ic_college"
+                            android:layout_marginRight="10dp"
+                            />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_collegeRegister_collegename"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_collegeRegister_collegename"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="College Name"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="13sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/ic_location"
+                            android:layout_marginRight="10dp"
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_collegeRegister_collegeaddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_collegeRegister_collegeaddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:hint="College Address"
+                                android:textSize="13sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/ic_email"
+                            android:layout_marginRight="10dp"
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_collegeRegister_collegemail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_collegeRegister_collegemail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:hint="Email"
+                                android:textSize="13sp"
+                                android:inputType="textEmailAddress"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/ic_link"
+                            android:layout_marginRight="10dp"
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_collegeRegister_collegelink"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_collegeRegister_collegelink"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:hint="Website Link"
+                                android:textSize="13sp"
+                                android:inputType="textEmailAddress"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/ic_contact"
+                            android:layout_marginRight="10dp"
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_collegeRegister_contact"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_collegeRegister_contact"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Contact number"
+                                android:layout_marginBottom="10dp"
+                                android:textSize="13sp"
+                                android:inputType="phone"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/ic_password"
+                            android:layout_marginRight="10dp"
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_collegeRegister__password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_collegeRegister_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:hint="Password"
+                                android:textSize="13sp"
+                                android:inputType="textPassword"/>
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/ic_password"
+                            android:layout_marginRight="10dp"
+                            />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_collegeRegister__confirmpassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_collegeRegister_confirmpassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:hint="Confirm password"
+                                android:textSize="13sp"
+                                android:inputType="textPassword"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/textview_collegeRegistration_errormsg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@android:color/holo_red_dark" />
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/button_collegeRegister_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/buttonshape"
+                        android:gravity="center"
+                        android:text="Register"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:onClick="InsertCollege"/>
+
+
+                </LinearLayout>
+            </ScrollView>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

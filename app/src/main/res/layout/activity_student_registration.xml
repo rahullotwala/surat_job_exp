@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StudentRegistrationActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="10dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frameLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/building_bcak">
+
+            </FrameLayout>
+
+            <ImageView
+
+                android:layout_width="100dp"
+                android:layout_height="84dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:elevation="8dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/frameLayout3"
+                app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
+                app:layout_constraintHorizontal_bias="0.039"
+                app:layout_constraintStart_toStartOf="@+id/frameLayout3"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+                app:layout_constraintVertical_bias="0.423"
+                app:srcCompat="@drawable/student_img" />
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="130dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout3"
+                app:layout_constraintVertical_bias="0.0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical"
+                    android:padding="30dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--textview_studentregister_profile   text view-->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageView_studentregister_studentUploadedPicture"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:onClick="ChooseImage"
+                            android:src="@drawable/ic_profile"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="ChooseImage"
+                            android:src="@drawable/ic_edit"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView_studentregister_studentUploadedPicture"
+                            app:layout_constraintEnd_toEndOf="@+id/imageView_studentregister_studentUploadedPicture"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="@+id/imageView_studentregister_studentUploadedPicture"
+                            app:layout_constraintTop_toTopOf="@+id/imageView_studentregister_studentUploadedPicture"
+                            app:layout_constraintVertical_bias="1.0" />
+                    </android.support.constraint.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/icon_denim"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/icon_denim"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_user" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_firstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_studentregister_firstname"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:hint="Firstname"
+                                android:inputType="textPersonName"
+                                android:textSize="13sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/icon_denim"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/icon_denim"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_user" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_lasttname"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_studentregister_lastname"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:hint="Lastname"
+                                android:inputType="textPersonName"
+                                android:textSize="13sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/icon_denim"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/ic_denim"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_contact" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_contactnumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_studentregister_contactnumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="contactnumber"
+                                android:inputType="phone"
+                                android:textSize="13sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/icon_denim"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/ic_denim"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_email" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_studentregister_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:hint="Email"
+                                android:textSize="13sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_boy" />
+
+                        <RadioButton
+                            android:id="@+id/radiobutton_studentregister_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="5dp"
+                            android:checked="true"
+
+                            />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_girl" />
+
+                        <RadioButton
+                            android:id="@+id/radiobutton_studentregister_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="29dp"
+
+                            />
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup_studentregistration_isOther"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+
+                        <RadioButton
+                            android:id="@+id/radiobutton_studentregister_student"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="20dp"
+                            android:checked="true"
+                            android:text="Student" />
+
+
+                        <RadioButton
+                            android:id="@+id/radiobutton_studentregister_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="Passout" />
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ic_denim"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/ic_denim"
+                            android:src="@drawable/ic_college_heading" />
+
+                        <Spinner
+                            android:id="@+id/spinner_studentregister_selectcollege"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ic_denim"
+                            android:layout_marginLeft="10dp"
+
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ic_denim"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/ic_denim"
+                            android:src="@drawable/ic_branch" />
+
+                        <Spinner
+                            android:id="@+id/spinner_studentregister_selectbranch"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ic_denim"
+                            android:layout_marginLeft="10dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/icon_denim"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/ic_denim"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_star" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_cgpa"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_studentregister_cgpa"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="CGPA"
+                                android:inputType="numberDecimal"
+                                android:textSize="13sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ic_denim"
+                        android:layout_marginTop="10dp"
+                        android:onClick="ChooseFile">
+
+                        <ImageView
+                            android:focusableInTouchMode="false"
+                            android:id="@+id/imageView13"
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/ic_denim"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_attachment"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/button_studentregistration_viewdocument"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_resume"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:textColorHint="@color/colorPrimary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/button_studentregistration_viewdocument"
+                            app:layout_constraintStart_toEndOf="@+id/imageView13"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <EditText
+                                android:focusable="false"
+                                android:id="@+id/textview_studentregister_resume"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/ic_denim"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="@dimen/font13"
+                                android:gravity="center_vertical"
+                                android:hint="Upload Your Resume"
+                                 />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageView
+                            android:id="@+id/button_studentregistration_viewdocument"
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="wrap_content"
+                            android:onClick="ViewDocument"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@android:drawable/ic_menu_view" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/icon_denim"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/ic_denim"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_password" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_passowrd"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_studentregister_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="password"
+                                android:inputType="textPassword"
+                                android:textSize="13sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/icon_denim"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/crf_psw"
+                            android:layout_width="@dimen/ic_denim"
+                            android:layout_height="@dimen/ic_denim"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_password" />
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_confirmpassowrd"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:textColorHint="@color/colorPrimary">
+
+                            <EditText
+                                android:id="@+id/editText_studentregister_confirmpassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="Confirm password"
+                                android:inputType="textPassword"
+                                android:textSize="13sp" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/tnc_chB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/termscondition"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16dp"></CheckBox>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/buttonshape"
+                        android:gravity="center"
+                        android:onClick="registerstudent"
+                        android:text="Register"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+
+                        />
+
+                </LinearLayout>
+            </ScrollView>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group
+        android:id="@+id/studentHomeDrawerGroup1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_student_home"
+            android:icon="@drawable/ic_dashboard_side_nav"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_student_profile"
+            android:icon="@drawable/ic_user"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_student_campus_participation"
+            android:icon="@drawable/ic_partcipation_side_nav"
+            android:title="My participation" />
+    </group>
+
+            <item
+                android:id="@+id/nav_cv"
+                android:icon="@drawable/ic_cv"
+                android:title="Resume Builder" />
+
+            <item
+                android:id="@+id/nav_sudent_guideline"
+                android:icon="@drawable/ic_guideline"
+                android:title="Guideline" />
+
+
+            <item
+                android:id="@+id/nav_student_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Logout" />
+</menu>
