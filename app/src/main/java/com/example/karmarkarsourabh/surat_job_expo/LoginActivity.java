@@ -25,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.karmarkarsourabh.surat_job_expo.Utill.Session;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonParseException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -193,7 +195,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Log.d("do", "doInBackground: ");
+            Log.e("do", "doInBackground: ");
             try {
                 HttpUrl.Builder builder = HttpUrl.parse(getResources().getString(R.string.su_uri) + "API.php")
                         .newBuilder();
@@ -206,8 +208,9 @@ public class LoginActivity extends AppCompatActivity {
                         .build();
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
-
+//                Log.e("data", "doInBackground: "+response.body().string());
                 JSONObject jobj = new JSONObject(response.body().string());
+
                 if (jobj.has("data")) {
                     JSONArray jsonArray = jobj.getJSONArray("data");
                     if (jsonArray.length() > 0) {
@@ -223,10 +226,10 @@ public class LoginActivity extends AppCompatActivity {
 
 //                          user json
                             JSONObject obj = jsonArray.getJSONObject(0);
-                            new Session(LoginActivity.this).SetLoginID(obj.getString("Job_seeker_id"));
+                            new Session(LoginActivity.this).SetLoginID(obj.getString("Job_seeker_ID"));
                             Stud_sharepref = getSharedPreferences("stud", 0);
                             SharedPreferences.Editor editor = Stud_sharepref.edit();
-                            editor.putString("stud_id", obj.getString("Job_seeker_id"));
+                            editor.putString("stud_id", obj.getString("Job_seeker_ID"));
                             editor.commit();
                             editor.apply();
 
@@ -254,8 +257,14 @@ public class LoginActivity extends AppCompatActivity {
                         isAuth = false;
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (JSONException e) {
+                Log.e("error", "doInBackground: "+e.getMessage());
+            }
+            catch (IOException e) {
+                Log.e("IOerror", "doInBackground: "+e.getMessage());
+            }
+            catch (Exception e) {
+                Log.e("eerror", "doInBackground: "+e.getMessage());
             }
             return null;
         }
