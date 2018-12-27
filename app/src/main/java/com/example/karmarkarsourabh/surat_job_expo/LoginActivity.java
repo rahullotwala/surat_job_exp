@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     sv = v;
-                    new doLogin().execute();
+                    new Login().execute();
                 }
             });
 
@@ -147,13 +147,35 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    class doLogin extends AsyncTask<Void, Void, Void> {
-        private Dialog dialog;
-        private boolean isAuth;
+    class Login extends AsyncTask<String, String, String> {
+
+        Dialog dialog;
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                HttpUrl.Builder builder = HttpUrl.parse(getResources().getString(R.string.su_uri) + "API.php")
+                        .newBuilder();
+                builder.addQueryParameter("action", "login");
+                builder.addQueryParameter("em", email.getText().toString());
+                builder.addQueryParameter("pass", password.getText().toString());
+                builder.addQueryParameter("user", String.valueOf(cat_code));
+                Request request = new Request.Builder()
+                        .url(builder.build())
+                        .build();
+                OkHttpClient client = new OkHttpClient();
+                Response response = client.newCall(request).execute();
+
+                return response.body().string();
+            } catch (Exception e) {
+                Log.e("Exception", "doInBackground: " + e.getMessage());
+            }
+            return null;
+        }
 
         @Override
         protected void onPreExecute() {
-
+            super.onPreExecute();
             if (!email.getText().toString().equals("") && !password.getText().toString().equals("")) {
 
                 if (!categoryspinner.getSelectedItem().toString().equals("Select")) {
@@ -167,108 +189,66 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 email.setError("email");
                 password.setError("password");
-
             }
-            super.onPreExecute();
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            if (isAuth) {
-                dialog.dismiss();
-                if (cat_code == 1) {
-                    startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
-                    Snackbar.make(sv, "Successfully Login", Snackbar.LENGTH_LONG).show();
-                } else if (cat_code == 2) {
-//                    company code
-                } else if (cat_code == 3) {
-                    startActivity(new Intent(LoginActivity.this, College_Home.class));
-                    Snackbar.make(sv, "Successfully Login", Snackbar.LENGTH_LONG).show();
-                }
-            } else {
-                dialog.dismiss();
-                Snackbar.make(sv, "You have enter Wrong Credentials", Snackbar.LENGTH_LONG).show();
-            }
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            dialog.dismiss();
+            Log.e("Data", "onPostExecute: " + s);
 
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            Log.e("do", "doInBackground: ");
             try {
-                HttpUrl.Builder builder = HttpUrl.parse(getResources().getString(R.string.su_uri) + "API.php")
-                        .newBuilder();
-                builder.addQueryParameter("action", "lgoin");
-                builder.addQueryParameter("em", email.getText().toString());
-                builder.addQueryParameter("pass", password.getText().toString());
-                builder.addQueryParameter("user", String.valueOf(cat_code));
-                Request request = new Request.Builder()
-                        .url(builder.build())
-                        .build();
-                OkHttpClient client = new OkHttpClient();
-                Response response = client.newCall(request).execute();
-//                Log.e("data", "doInBackground: "+response.body().string());
-                JSONObject jobj = new JSONObject(response.body().string());
+                JSONObject jobj = new JSONObject(s);
+                JSONArray ja = jobj.getJSONArray("data");
 
-                if (jobj.has("data")) {
-                    JSONArray jsonArray = jobj.getJSONArray("data");
-                    if (jsonArray.length() > 0) {
+                if (ja.length() >= 0) {
 
-                        isAuth = true;
-                        Log.d("Loginjson", jobj.getString("data"));
-//                        user share preference
-                        userShare = getSharedPreferences("user", 0);
-                        SharedPreferences.Editor ueditor = userShare.edit();
-                        ueditor.putBoolean("login", true);
+                    userShare = getSharedPreferences("user", 0);
+                    SharedPreferences.Editor ueditor = userShare.edit();
+                    ueditor.putBoolean("login", true);
 
-                        if (cat_code == 1) {
+                    if (cat_code == 1) {
 
 //                          user json
-                            JSONObject obj = jsonArray.getJSONObject(0);
-                            new Session(LoginActivity.this).SetLoginID(obj.getString("Job_seeker_ID"));
-                            Stud_sharepref = getSharedPreferences("stud", 0);
-                            SharedPreferences.Editor editor = Stud_sharepref.edit();
-                            editor.putString("stud_id", obj.getString("Job_seeker_ID"));
-                            editor.commit();
-                            editor.apply();
+                        JSONObject obj = ja.getJSONObject(0);
+                        new Session(LoginActivity.this).SetLoginID(obj.getString("Job_seeker_id"));
+                        Stud_sharepref = getSharedPreferences("stud", 0);
+                        SharedPreferences.Editor editor = Stud_sharepref.edit();
+                        editor.putString("stud_id", obj.getString("Job_seeker_id"));
+                        editor.commit();
+                        editor.apply();
 
-                            ueditor.putString("user", "stud");
-                            ueditor.commit();
-                            ueditor.apply();
-                        } else if (cat_code == 2) {
+                        ueditor.putString("user", "stud");
+                        ueditor.commit();
+                        ueditor.apply();
+                        startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
 
-                        } else if (cat_code == 3) {
+                    } else if (cat_code == 2) {
+
+                    } else if (cat_code == 3) {
 //                          college json
-                            JSONObject obj = jsonArray.getJSONObject(0);
-                            new Session(LoginActivity.this).SetLoginID(String.valueOf(cat_code));
-                            CollegeSharePref = getSharedPreferences("clg", 0);
-                            SharedPreferences.Editor editor = CollegeSharePref.edit();
-                            editor.putString("clg_id", obj.getString("College_id"));
-                            editor.commit();
-                            editor.apply();
+                        JSONObject obj = ja.getJSONObject(0);
+                        new Session(LoginActivity.this).SetLoginID(String.valueOf(cat_code));
+                        CollegeSharePref = getSharedPreferences("clg", 0);
+                        SharedPreferences.Editor editor = CollegeSharePref.edit();
+                        editor.putString("clg_id", obj.getString("College_id"));
+                        editor.commit();
+                        editor.apply();
 
-                            ueditor.putString("user", "College");
-                            ueditor.commit();
-                            ueditor.apply();
-                        }
-
-                    } else {
-                        isAuth = false;
+                        ueditor.putString("user", "College");
+                        ueditor.commit();
+                        ueditor.apply();
                     }
+
+                } else {
+                    Snackbar.make((LoginActivity.this).findViewById(R.id.Contex_login), "There no such user Exist!", Snackbar.LENGTH_LONG).show();
                 }
-            } catch (JSONException e) {
-                Log.e("error", "doInBackground: "+e.getMessage());
+
+            } catch (JSONException je) {
+                Log.e("JSON ERROR", "onPostExecute: " + je.getMessage());
+
             }
-            catch (IOException e) {
-                Log.e("IOerror", "doInBackground: "+e.getMessage());
-            }
-            catch (Exception e) {
-                Log.e("eerror", "doInBackground: "+e.getMessage());
-            }
-            return null;
         }
     }
 }
-
-
