@@ -227,7 +227,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else if (cat_code == 2) {
 
                     } else if (cat_code == 3) {
-//                          college json
+                        //college json
                         JSONObject obj = ja.getJSONObject(0);
                         new Session(LoginActivity.this).SetLoginID(String.valueOf(cat_code));
                         CollegeSharePref = getSharedPreferences("clg", 0);
@@ -239,8 +239,8 @@ public class LoginActivity extends AppCompatActivity {
                         ueditor.putString("user", "College");
                         ueditor.commit();
                         ueditor.apply();
+                        startActivity(new Intent(LoginActivity.this, College_Home.class));
                     }
-
                 } else {
                     Snackbar.make((LoginActivity.this).findViewById(R.id.Contex_login), "There no such user Exist!", Snackbar.LENGTH_LONG).show();
                 }
