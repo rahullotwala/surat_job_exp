@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -187,7 +188,7 @@ public class StudentRegistrationActivity extends AppCompatActivity implements Te
         client.newCall(req).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("You got Error", e.getStackTrace().toString());
+                Log.e("You got Error", e.getMessage());
                 e.printStackTrace();
             }
 
@@ -489,8 +490,9 @@ public class StudentRegistrationActivity extends AppCompatActivity implements Te
                 Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
                 studentUploadedPic.setImageBitmap(bmp);
 
-                Log.d("image path", selectedImageUri.getPath());
+
                 PicturePath = getPicturePathFromUri(selectedImageUri,requestCode);
+                Log.e("image path", PicturePath);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -508,6 +510,7 @@ public class StudentRegistrationActivity extends AppCompatActivity implements Te
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private String getPicturePathFromUri(Uri uri, int rcode) {
         if(rcode==REQ_SELECT_PIC){
+
             Log.d("URI", uri.toString());
             Cursor cursor = getContentResolver().query(uri, null, null, null, null);
             cursor.moveToFirst();
@@ -525,16 +528,17 @@ public class StudentRegistrationActivity extends AppCompatActivity implements Te
             String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
             cursor.close();
             Log.d("Path from getPicmethod ", path);
+
+
             return path;
-        }
-        else if (rcode==REQ_SELECT_RESUME){
-            Log.e("estorage", "+++ External Document URI");
+        } else if (rcode == REQ_SELECT_RESUME) {
+            Log.e("estorage", ""+uri);
             final String docId = DocumentsContract.getDocumentId(uri);
             final String[] split = docId.split(":");
             final String type = split[0];
-
+        Log.e("estorage", "getPicturePathFromUri: "+type);
             if ("primary".equalsIgnoreCase(type)) {
-                Log.e("estorage", "+++ Primary External Document URI");
+                Log.e("estorage", "+++ "+Environment.getExternalStorageDirectory() + "/" + split[1]);
                 return Environment.getExternalStorageDirectory() + "/" + split[1];
             }
         }
