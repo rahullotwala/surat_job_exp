@@ -4,7 +4,10 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -20,6 +23,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.karmarkarsourabh.surat_job_expo.JobFairSingle;
 import com.example.karmarkarsourabh.surat_job_expo.Modal.JobFair.jobfair;
 import com.example.karmarkarsourabh.surat_job_expo.R;
 
@@ -27,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,7 +53,7 @@ import okhttp3.Response;
 public class StudentJobFairAdapter extends RecyclerView.Adapter<StudentJobFairAdapter.ViewHolder> {
 
     jobfair mJobfair;
-    Context context;
+    transient Context context;
     public StudentJobFairAdapter(jobfair jfModal, Context context) {
         this.mJobfair = jfModal;
         this.context = context;
@@ -60,7 +65,7 @@ public class StudentJobFairAdapter extends RecyclerView.Adapter<StudentJobFairAd
     }
 
     @Override
-    public void onBindViewHolder(final StudentJobFairAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final StudentJobFairAdapter.ViewHolder holder, final int position) {
         holder.dName.setText(Html.fromHtml(mJobfair.getData().get(position).getClg_name()));
         holder.sDate.setText(Html.fromHtml(mJobfair.getData().get(position).getStart_date()));
         holder.eDate.setText(Html.fromHtml(mJobfair.getData().get(position).getEnd_date()));
@@ -70,6 +75,15 @@ public class StudentJobFairAdapter extends RecyclerView.Adapter<StudentJobFairAd
         }else {
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.splash_back));
         }
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mintent = new Intent(context,JobFairSingle.class);
+                mintent.putExtra("obj", (Serializable) mJobfair);
+                mintent.putExtra("pos",position);
+                context.startActivity(mintent);
+            }
+        });
     }
 
     @Override

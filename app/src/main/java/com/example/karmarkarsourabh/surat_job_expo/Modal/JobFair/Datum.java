@@ -3,7 +3,9 @@ package com.example.karmarkarsourabh.surat_job_expo.Modal.JobFair;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Datum {
+import java.io.Serializable;
+
+public class Datum implements Serializable {
     @SerializedName("College_name")
     @Expose
     private String clg_name;

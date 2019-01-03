@@ -34,7 +34,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Dashboard"
@@ -45,9 +44,7 @@
             android:name=".Resume_theme"
             android:noHistory="true"
             android:parentActivityName=".Dashboard"
-            android:screenOrientation="portrait" >
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".CollegeRegistrationActivity"
             android:label="@string/clg_reg_str"
@@ -78,11 +75,13 @@
             android:label="Profile"
             android:parentActivityName=".College_Home"
             android:screenOrientation="portrait" />
-        <activity android:name=".MyParticipationDrives"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".MyParticipationDrives"
             android:label="Campus Drive"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".StudentHomeActivity"></activity>
+            android:parentActivityName=".StudentHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".JobFairSingle"></activity>
     </application>
 
 </manifest>

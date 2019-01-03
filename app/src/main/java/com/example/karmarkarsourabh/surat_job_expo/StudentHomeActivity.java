@@ -10,10 +10,10 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,12 +27,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.karmarkarsourabh.surat_job_expo.Adaptor.StudentHomeAdapter;
 import com.example.karmarkarsourabh.surat_job_expo.Adaptor.StudentJobFairAdapter;
 import com.example.karmarkarsourabh.surat_job_expo.Modal.JobFair.jobfair;
 import com.example.karmarkarsourabh.surat_job_expo.Utill.Session;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +38,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -62,7 +59,6 @@ public class StudentHomeActivity extends AppCompatActivity
     TextView studentName, studentEmail;
     String sprofile = "", sname = "", semail = "";
     private RecyclerView recyclerView;
-    StudentHomeAdapter adapter;
     View v;
     ProgressDialog pd;
 
@@ -90,6 +86,7 @@ public class StudentHomeActivity extends AppCompatActivity
     private TextView hide_tv;
     private DrawerLayout drawer;
     private LinearLayout btn_note;
+    private SwipeRefreshLayout swipeRefresh;
 
 
     @Override
@@ -106,6 +103,15 @@ public class StudentHomeActivity extends AppCompatActivity
                 .setPrimaryText("Tap Here!")
                 .setSecondaryText("All you needed to know before Getting Started!")
                 .show();
+
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swiperefresh_student_home);
+
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new JobFairLoad().execute();
+            }
+        });
 
         btn_note = (LinearLayout) findViewById(R.id.Note_btn);
 
@@ -287,148 +293,12 @@ public class StudentHomeActivity extends AppCompatActivity
 
             }
             pd.dismiss();
+            if(swipeRefresh.isRefreshing()){
+                swipeRefresh.setRefreshing(false);
+            }
         }
     }
 
-    class AsycDataloadforJobfairName extends AsyncTask<String, String, String> {
-        private boolean isset;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            jobfairArraylist = new ArrayList<>();
-            URL = BASE_URL + "jobfair_display_relevent_to_student.php";
-
-        }
-
-        @Override
-        protected String doInBackground(final String... strings) {
-
-            RequestBody formbody = new FormBody.Builder()
-                    .add("job_seeker_id", session.getLoginID())
-                    .build();
-
-
-            final Request req = new Request.Builder()
-                    .url(URL)
-                    .post(formbody)
-                    .build();
-
-
-            client.newCall(req).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    Log.d("You got error", e.getMessage());
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    try {
-                        String rs = response.body().string();
-                        Log.d("Response For Jobfair", rs);
-                        JSONObject jsonObject = new JSONObject(rs);
-                        int success = jsonObject.getInt(TAG_SUCCESS);
-                        if (success == 1) {
-                            JSONArray jsonArray = jsonObject.getJSONArray(ARRAY_NAME);
-                            Log.d("Array Length", String.valueOf(jsonArray.length()));
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                final HashMap<String, String> common = new HashMap<>();
-                                common.put(TAG_JOB_FAIR_ID, jsonObject1.getString(TAG_JOB_FAIR_ID));
-                                common.put(TAG_JOB_FAIR_NAME, jsonObject1.getString(TAG_JOB_FAIR_NAME));
-                                common.put(TAG_JOB_FAIR_START_DATE, jsonObject1.getString(TAG_JOB_FAIR_START_DATE));
-                                common.put(TAG_JOB_FAIR_END_DATE, jsonObject1.getString(TAG_JOB_FAIR_END_DATE));
-                                common.put(TAG_STUDENT_REG_START_DATE, jsonObject1.getString(TAG_STUDENT_REG_START_DATE));
-                                common.put(TAG_STUDENT_REG_END_DATE, jsonObject1.getString(TAG_STUDENT_REG_END_DATE));
-                                common.put("job_seeker_id", session.getLoginID());
-
-                                //For checking participation
-                                OkHttpClient client1 = new OkHttpClient();
-
-                                String URL = BASE_URL + "student_participated_or_not.php";
-                                RequestBody formbody1 = new FormBody.Builder()
-                                        .add("job_seeker_id", session.getLoginID())
-                                        .add("job_fair_id", jsonObject1.getString(TAG_JOB_FAIR_ID))
-                                        .build();
-                                final Request req1 = new Request.Builder()
-                                        .url(URL)
-                                        .post(formbody1)
-                                        .build();
-                                client1.newCall(req1).enqueue(new Callback() {
-                                    @Override
-                                    public void onFailure(Call call, IOException e) {
-                                        Log.d("Msg", e.getMessage());
-                                    }
-
-                                    @Override
-                                    public void onResponse(Call call, Response response) throws IOException {
-                                        try {
-                                            String rs = response.body().string();
-                                            Log.d("response", rs);
-                                            JSONObject jobj = new JSONObject(rs);
-                                            common.put(TAG_ISPARTICIPATED, jobj.getString(TAG_ISPARTICIPATED));
-                                            Log.d("common", common.toString());
-
-                                            jobfairArraylist.add(common);
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-
-
-                            }
-                        } else if (success == 2) {
-
-                            String msg = jsonObject.getString(TAG_MESSAGE);
-//                            HashMap<String,String> common = new HashMap<>();
-//                            common.put(TAG_MESSAGE,msg);
-//                            jobfairArraylist.add(common);
-                            isset = true;
-
-                        }
-                        pd.dismiss();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (isset) {
-                                    recyclerView.setVisibility(View.INVISIBLE);
-                                    hide_tv.setVisibility(View.VISIBLE);
-                                }
-                                adapter = new StudentHomeAdapter(jobfairArraylist, StudentHomeActivity.this);
-                                recyclerView.setLayoutManager(new LinearLayoutManager(StudentHomeActivity.this, LinearLayoutManager.VERTICAL, false));
-                                recyclerView.setHasFixedSize(true);
-                                recyclerView.setAdapter(adapter);
-
-                                studentName.setText(sname);
-                                studentEmail.setText(semail);
-                                Log.e("profile", "run: " + sprofile);
-
-                                Picasso.get().load(Image_uri + sprofile).into(studentProfile);
-
-//                                Glide.with(StudentHomeActivity.this).load(Image_uri + sprofile).into(studentProfile);
-                            }
-                        });
-//                        Log.e("isset : ", "onPostExecute: "+isset );
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            });
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Log.e("isset : ", "onPostExecute: " + isset);
-
-        }
-    }
 
     class AsycDataloadforStudent extends AsyncTask<String, String, String> {
         @Override

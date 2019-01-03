@@ -11,11 +11,10 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="165dp">
 
         <LinearLayout
             android:id="@+id/Note_btn"
-            android:elevation="5dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -24,6 +23,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/rounded_shades"
+            android:elevation="5dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/frameLayout4"
             app:layout_constraintEnd_toStartOf="@+id/imageView11"
@@ -49,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" >
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/textView2"
@@ -112,7 +112,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
         android:text="No job-fair found as per the Student Criteria"
         android:textSize="@dimen/font15"
         android:textStyle="bold"
@@ -120,20 +119,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Note_btn" />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recylerview_studentHome"
+        app:layout_constraintTop_toTopOf="@+id/swiperefresh_student_home" />
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swiperefresh_student_home"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Note_btn"></android.support.v7.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recylerview_studentHome"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:visibility="visible" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </android.support.constraint.ConstraintLayout>

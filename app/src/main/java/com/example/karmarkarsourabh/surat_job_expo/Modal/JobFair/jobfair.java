@@ -1,5 +1,8 @@
 package com.example.karmarkarsourabh.surat_job_expo.Modal.JobFair;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -19,4 +22,5 @@ public class jobfair implements Serializable {
     public void setData(List<Datum> data) {
         this.data = data;
     }
+
 }
