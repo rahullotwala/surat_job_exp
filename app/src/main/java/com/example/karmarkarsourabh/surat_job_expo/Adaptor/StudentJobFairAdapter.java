@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -50,7 +51,7 @@ import okhttp3.Response;
  * Created by Archana on 10-10-2018.
  */
 
-public class StudentJobFairAdapter extends RecyclerView.Adapter<StudentJobFairAdapter.ViewHolder> {
+public class StudentJobFairAdapter extends RecyclerView.Adapter<StudentJobFairAdapter.ViewHolder>{
 
     jobfair mJobfair;
     transient Context context;
@@ -74,14 +75,21 @@ public class StudentJobFairAdapter extends RecyclerView.Adapter<StudentJobFairAd
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.transperent_card));
         }else {
             holder.layout.setBackgroundColor(context.getResources().getColor(R.color.splash_back));
+
+            holder.layout.setEnabled(false);
+
+            holder.arrow.setEnabled(false);
         }
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mintent = new Intent(context,JobFairSingle.class);
-                mintent.putExtra("obj", (Serializable) mJobfair);
-                mintent.putExtra("pos",position);
-                context.startActivity(mintent);
+                intTentCall(position);
+            }
+        });
+        holder.arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intTentCall(position);
             }
         });
     }
@@ -91,16 +99,26 @@ public class StudentJobFairAdapter extends RecyclerView.Adapter<StudentJobFairAd
         return mJobfair.getData().size();
     }
 
+   private void intTentCall(int position){
+
+        Intent mintent = new Intent(context,JobFairSingle.class);
+        mintent.putExtra("obj", (Serializable) mJobfair);
+        mintent.putExtra("pos",position);
+        context.startActivity(mintent);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder  {
 
         TextView sDate, eDate, dName;
         ConstraintLayout layout;
+        ImageView arrow;
         public ViewHolder(View iV) {
             super(iV);
             sDate = (TextView) iV.findViewById(R.id.JFstart_date);
             eDate = (TextView) iV.findViewById(R.id.JFend_date);
             dName = (TextView) iV.findViewById(R.id.textView_studentHome_Drivename);
-            layout = (ConstraintLayout) iV.findViewById(R.id.constraintLayout_student_home);
+            layout = (ConstraintLayout) iV.findViewById(R.id.constrain_bottom_bar);
+            arrow = (ImageView) iV.findViewById(R.id.imageView_studentHome_imageMenu);
         }
 
     }

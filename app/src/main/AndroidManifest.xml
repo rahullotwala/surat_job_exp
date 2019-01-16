@@ -44,7 +44,7 @@
             android:name=".Resume_theme"
             android:noHistory="true"
             android:parentActivityName=".Dashboard"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CollegeRegistrationActivity"
             android:label="@string/clg_reg_str"
@@ -81,7 +81,13 @@
             android:parentActivityName=".StudentHomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".JobFairSingle"></activity>
+        <activity
+            android:name=".JobFairSingle"
+            android:label="Campus Drive"
+            android:parentActivityName=".StudentHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"/>
+
     </application>
 
 </manifest>

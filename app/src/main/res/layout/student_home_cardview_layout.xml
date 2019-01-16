@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/constraintLayout_student_home"
     android:layout_margin="20dp">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/frameLayout_studentHome_image"
+        android:id="@+id/Card_cover"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp">
@@ -122,6 +121,7 @@
     </android.support.v7.widget.CardView>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constrain_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/frameLayout_studentHome_image"
@@ -156,7 +156,7 @@
             android:layout_height="20dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:src="@drawable/ic_show_more_button_with_three_dots"
+            android:src="@drawable/forward_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
