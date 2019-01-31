@@ -21,4 +21,7 @@
     <color name="trnsperent_shade">#70547DB5</color>
     <color name="card_shade">#50547DB5</color>
     <color name="shadow">#d3d3d3 </color>
+    <color name="lightblue1">#79CEEC</color>
+    <color name="yellow">#F5D005</color>
+    <color name="red">#FF5858</color>
 </resources>
