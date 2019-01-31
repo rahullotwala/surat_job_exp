@@ -30,11 +30,9 @@ public class resume_adaptor extends RecyclerView.Adapter<resume_adaptor.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
         viewHolder.thm.setText(Html.fromHtml(rm_modal.getData().get(i).getTheme_name()));
         viewHolder.cat.setText(Html.fromHtml(rm_modal.getData().get(i).getTheme_category()));
-        Picasso.get().load(rm_modal.getData().get(i).getTheme_prev()).into(viewHolder.cv);
-
+        Picasso.get().load(context.getResources().getString(R.string.Image_uri)+rm_modal.getData().get(i).getTheme_prev()).into(viewHolder.cv);
     }
 
     @Override

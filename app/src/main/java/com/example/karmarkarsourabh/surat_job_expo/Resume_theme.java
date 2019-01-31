@@ -1,22 +1,24 @@
 package com.example.karmarkarsourabh.surat_job_expo;
 
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.GridLayout;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.karmarkarsourabh.surat_job_expo.Adaptor.resume_adaptor;
 import com.example.karmarkarsourabh.surat_job_expo.Modal.resume.resume_md;
 import com.google.gson.Gson;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.HttpUrl;
@@ -28,6 +30,8 @@ public class Resume_theme extends AppCompatActivity  {
     FragmentPagerAdapter adapterViewPager;
     private resume_md reume_modal;
     private RecyclerView rem_rc;
+    private TextView hTv;
+    private ImageView warningIC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class Resume_theme extends AppCompatActivity  {
         setContentView(R.layout.activity_resume_theme);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        warningIC = (ImageView) findViewById(R.id.warningIV);
+        hTv = (TextView) findViewById(R.id.hidden_TV);
         rem_rc = (RecyclerView) findViewById(R.id.resume_list);
         new getResume().execute();
         
@@ -53,21 +59,36 @@ public class Resume_theme extends AppCompatActivity  {
         @Override
         protected void onPostExecute(String aVoid) {
             super.onPostExecute(aVoid);
-            Log.e("status", "onPostExecute: "+aVoid);
-            reume_modal =  new Gson().fromJson(aVoid,resume_md.class);
-            resume_adaptor adaptor = new resume_adaptor(reume_modal,Resume_theme.this);
-            rem_rc.setLayoutManager(new GridLayoutManager(Resume_theme.this,2,GridLayoutManager.VERTICAL,false));
-            rem_rc.setItemAnimator(new DefaultItemAnimator());
-            rem_rc.setAdapter(adaptor);
+            try {
+                JSONObject object = new JSONObject(aVoid);
+                JSONArray array = object.getJSONArray("data");
+                Log.e("ARRAY", "onPostExecute: "+array);
+                if(array.length()>0) {
+                    Log.e("status", "onPostExecute: " + aVoid);
+                    reume_modal = new Gson().fromJson(aVoid, resume_md.class);
+                    resume_adaptor adaptor = new resume_adaptor(reume_modal, Resume_theme.this);
+                    rem_rc.setLayoutManager(new GridLayoutManager(Resume_theme.this, 2, GridLayoutManager.VERTICAL, false));
+                    rem_rc.setItemAnimator(new DefaultItemAnimator());
+                    rem_rc.setAdapter(adaptor);
+                }
+                else {
+                    rem_rc.setVisibility(View.INVISIBLE);
+                    hTv.setVisibility(View.VISIBLE);
+                    warningIC.setVisibility(View.VISIBLE);
+                }
+            } catch (JSONException e) {
+                Log.e("json error resume list", "onPostExecute: "+e.getMessage());
+            }
+
         }
 
         @Override
         protected String doInBackground(String... voids) {
-            Log.d("do", "doInBackground: ");
+
             try {
                 HttpUrl.Builder builder = HttpUrl.parse(getResources().getString(R.string.su_uri) + "API.php")
                         .newBuilder();
-                builder.addQueryParameter("action", "Resume_list");
+                builder.addQueryParameter("action", "resume_theme");
                 Request request = new Request.Builder()
                         .url(builder.build())
                         .build();
@@ -76,7 +97,6 @@ public class Resume_theme extends AppCompatActivity  {
                 res = response.body().string();
                 Log.e("Data", "doInBackground: "+res);
                 return res;
-
             }
             catch (Exception e){
                 Log.e("resume_list_err", "msg: "+e.getMessage());

@@ -27,6 +27,8 @@ public class JobFairSingle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_fair_single);
+
+        //initailization
         toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collap_toolbar_job_details);
         barLayout = (AppBarLayout) findViewById(R.id.app_bar_job_details);
         app_toolbar = (Toolbar) findViewById(R.id.job_detai_toolbar);
@@ -67,10 +69,11 @@ public class JobFairSingle extends AppCompatActivity {
                     toolbarLayout.setTitle(CollegeName);
                     isShow = true;
                 } else if (isShow) {
-                    toolbarLayout.setTitle(" ");//carefull there should a space between double quote otherwise it wont work
+                    toolbarLayout.setTitle(" ");
                     isShow = false;
                 }
             }
         });
     }
+
 }
