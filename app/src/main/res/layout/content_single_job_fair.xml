@@ -13,13 +13,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="false"
-        android:visibility="visible"/>
+        android:visibility="visible"></android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/dataNotFound"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:layout_marginTop="40dp"
         android:orientation="vertical"
         android:visibility="invisible">
 
@@ -36,7 +37,7 @@
             android:text="@string/Warning_msg" />
     </LinearLayout>
 
-    <LinearLayoust
+    <LinearLayout
         android:id="@+id/participated_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -266,5 +267,5 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
-    </LinearLayoust>
+    </LinearLayout>
 </RelativeLayout>

@@ -34,9 +34,9 @@
 
     <string name="spinner_promt">Select College</string>
     <!--10.0.2.2-->
-    <string name="BASE_URL">http://10.0.2.2:80/campus_drive_apis/</string>
-    <string name="Image_uri">http://10.0.2.2:80/surat_job_api/Uploaded_document/Picture/</string>
-    <string name="su_uri">http://10.0.2.2:80/surat_job_api/</string>
+    <string name="BASE_URL">http://192.168.0.114:80/campus_drive_apis/</string>
+    <string name="Image_uri">http://192.168.0.114:80/surat_job_api/Uploaded_document/Picture/</string>
+    <string name="su_uri">http://192.168.0.114:80/surat_job_api/</string>
     <string name="termscondition">I accepipt the Term and Conditions</string>
     <string name="google_text">Sign in with Google</string>
 

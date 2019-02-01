@@ -1,6 +1,7 @@
 package com.example.karmarkarsourabh.surat_job_expo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -21,6 +22,7 @@ import com.example.karmarkarsourabh.surat_job_expo.Adaptor.JobListAdaptor;
 import com.example.karmarkarsourabh.surat_job_expo.Modal.JobFair.jobfair;
 import com.example.karmarkarsourabh.surat_job_expo.Modal.JobList.joblist;
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +49,7 @@ public class JobFairSingle extends AppCompatActivity {
     private Toolbar app_toolbar;
     private FloatingActionButton Participate_FloatB;
     private RecyclerView job_list_RV;
-    private LinearLayout FourZeroFour,participated_card;
+    private LinearLayout FourZeroFour, participated_card;
     private int jid;
 
     @Override
@@ -80,8 +82,11 @@ public class JobFairSingle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                Snackbar.make(v,"You have already participated",Snackbar.LENGTH_LONG).show();
-                job_list_RV.setVisibility(View.INVISIBLE);
-                participated_card.setVisibility(View.VISIBLE);
+                if (FourZeroFour.getVisibility() == View.VISIBLE) {
+                    Snackbar.make(v, "Sorry there is no job is posted yet!", Snackbar.LENGTH_LONG).show();
+                } else {
+                    new participateInJobFair().execute();
+                }
             }
         });
 
@@ -95,7 +100,7 @@ public class JobFairSingle extends AppCompatActivity {
         location_tv.setText(mJobfair.getData().get(mintent.getIntExtra("pos", 0)).getClg_loc());
         email_tv.setText(mJobfair.getData().get(mintent.getIntExtra("pos", 0)).getClg_email());
         contact_tv.setText(mJobfair.getData().get(mintent.getIntExtra("pos", 0)).getClg_contat());
-        jid = mJobfair.getData().get(mintent.getIntExtra("pos",0)).getJFid();
+        jid = mJobfair.getData().get(mintent.getIntExtra("pos", 0)).getJFid();
 
         barLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = true;
@@ -115,11 +120,11 @@ public class JobFairSingle extends AppCompatActivity {
                 }
             }
         });
-
-        new GetJobList().execute();
+        new checkApplyForJobFair().execute();
     }
 
-    private class GetJobList extends AsyncTask<String,String,String>{
+
+    private class GetJobList extends AsyncTask<String, String, String> {
 
         private String res;
         private joblist JobListModal;
@@ -127,39 +132,38 @@ public class JobFairSingle extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Snackbar.make((JobFairSingle.this).findViewById(R.id.singleJobFairView),"Loading Data..!",Snackbar.LENGTH_LONG).show();
+            Snackbar.make((JobFairSingle.this).findViewById(R.id.singleJobFairView), "Loading Data..!", Snackbar.LENGTH_SHORT).show();
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try {
-                Log.e("JSon data", "onPostExecute: "+s);
+                Log.e("JSon data", "onPostExecute: " + s);
                 JSONObject object = new JSONObject(s);
                 JSONObject dataObj = object.getJSONObject("data");
                 JSONArray array = dataObj.getJSONArray("data");
 
-                if (array.length()>0){
+                if (array.length() > 0) {
                     //Extraction Json data
 
-                    JobListModal = new Gson().fromJson(dataObj.toString(),joblist.class);
+                    JobListModal = new Gson().fromJson(dataObj.toString(), joblist.class);
 
                     //adaptor configuration
-                    JobListAdaptor adaptor = new JobListAdaptor(JobFairSingle.this,JobListModal);
-                    job_list_RV.setLayoutManager(new LinearLayoutManager(JobFairSingle.this,LinearLayoutManager.VERTICAL,false));
+                    JobListAdaptor adaptor = new JobListAdaptor(JobFairSingle.this, JobListModal);
+                    job_list_RV.setLayoutManager(new LinearLayoutManager(JobFairSingle.this, LinearLayoutManager.VERTICAL, false));
                     job_list_RV.setItemAnimator(new DefaultItemAnimator());
                     job_list_RV.setAdapter(adaptor);
 
-                }
-                else {
+                } else {
 
                     //the json have null data [ ]
                     FourZeroFour.setVisibility(View.VISIBLE);
                     job_list_RV.setVisibility(View.INVISIBLE);
-                    Snackbar.make((JobFairSingle.this).findViewById(R.id.singleJobFairView),"There is no Data..!",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make((JobFairSingle.this).findViewById(R.id.singleJobFairView), "There is no Data..!", Snackbar.LENGTH_LONG).show();
                 }
-            }catch (JSONException e){
-                Log.e("JSonError", "onPostExecute: "+e.getMessage());
+            } catch (JSONException e) {
+                Log.e("JSonError", "onPostExecute: " + e.getMessage());
             }
 
         }
@@ -167,7 +171,7 @@ public class JobFairSingle extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                Log.e("id", "doInBackground: "+String.valueOf(jid));
+                Log.e("id", "doInBackground: " + String.valueOf(jid));
                 HttpUrl.Builder builder = HttpUrl.parse(getResources().getString(R.string.su_uri) + "API.php")
                         .newBuilder();
                 builder.addQueryParameter("action", "JobList");
@@ -178,10 +182,120 @@ public class JobFairSingle extends AppCompatActivity {
                 OkHttpClient client = new OkHttpClient();
                 Response response = client.newCall(request).execute();
                 res = response.body().string();
-                Log.e("Data", "doInBackground: "+res);
+                Log.e("Data", "doInBackground: " + res);
                 return res;
-            }catch (IOException e){
-                Log.e("IOError", "doInBackground: "+e.getMessage());
+            } catch (IOException e) {
+                Log.e("IOError", "doInBackground: " + e.getMessage());
+                return null;
+            }
+
+        }
+    }
+
+    private class participateInJobFair extends AsyncTask<String, String, String> {
+        private String res;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+                Log.e("Json Data", "onPostExecute: " + s);
+                JSONObject object = new JSONObject(s);
+
+                if (object.getInt("status") == 2) {
+                    Snackbar.make((JobFairSingle.this).findViewById(R.id.singleJobFairView), object.getString("data") + " " + object.getString("message"), Snackbar.LENGTH_LONG).show();
+                }
+                else if (object.getInt("status") == 1){
+                    job_list_RV.setVisibility(View.INVISIBLE);
+                    participated_card.setVisibility(View.VISIBLE);
+                    Snackbar.make((JobFairSingle.this).findViewById(R.id.singleJobFairView), object.getString("message"), Snackbar.LENGTH_LONG).show();
+                }
+                else {
+                    Snackbar.make((JobFairSingle.this).findViewById(R.id.singleJobFairView), object.getString("message"), Snackbar.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                Log.e("JSon Error", "onPostExecute: " + e.getMessage());
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+
+                SharedPreferences Stud_sharepref = getSharedPreferences("stud", 0);
+
+                HttpUrl.Builder builder = HttpUrl.parse(getResources().getString(R.string.su_uri) + "API.php")
+                        .newBuilder();
+                builder.addQueryParameter("action", "participate_jobFair");
+                builder.addQueryParameter("JS_ID", Stud_sharepref.getString("stud_id", "0"));
+                builder.addQueryParameter("JF_ID", String.valueOf(jid));
+                Request request = new Request.Builder()
+                        .url(builder.build())
+                        .build();
+                OkHttpClient client = new OkHttpClient();
+                Response response = client.newCall(request).execute();
+                res = response.body().string();
+                Log.e("Data", "doInBackground: " + res);
+                return res;
+            } catch (IOException e) {
+                Log.e("IOError", "doInBackground: " + e.getMessage());
+                return null;
+            }
+        }
+    }
+
+    private class checkApplyForJobFair extends AsyncTask<String,String,String>{
+        private String res;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try{
+                JSONObject object = new JSONObject(s);
+                if (object.getInt("status")==1){
+                    job_list_RV.setVisibility(View.INVISIBLE);
+                    participated_card.setVisibility(View.VISIBLE);
+                }else {
+                    new GetJobList().execute();
+                }
+            }
+            catch (JSONException e){
+                Log.e("JSon error", "onPostExecute: "+e.getMessage());
+            }
+
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+
+                SharedPreferences Stud_sharepref = getSharedPreferences("stud", 0);
+
+                HttpUrl.Builder builder = HttpUrl.parse(getResources().getString(R.string.su_uri) + "API.php")
+                        .newBuilder();
+                builder.addQueryParameter("action", "CheckApplication");
+                builder.addQueryParameter("JS_ID", Stud_sharepref.getString("stud_id", "0"));
+                builder.addQueryParameter("JF_ID", String.valueOf(jid));
+                Request request = new Request.Builder()
+                        .url(builder.build())
+                        .build();
+                OkHttpClient client = new OkHttpClient();
+                Response response = client.newCall(request).execute();
+                res = response.body().string();
+                Log.e("Data", "doInBackground: " + res);
+                return res;
+            } catch (IOException e) {
+                Log.e("IOError", "doInBackground: " + e.getMessage());
                 return null;
             }
 
